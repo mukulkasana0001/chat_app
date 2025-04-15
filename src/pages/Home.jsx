@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 import { io } from "socket.io-client";
 
-const socket = io("https://server-repo-phi.vercel.app/");
+const socket = io("https://server-repo-phi.vercel.app");
 
 function App() {
 
