@@ -50,7 +50,7 @@ function App() {
   }, []);
 
 
-  if (!state) {
+  if (!userData) {
     return (
       <div className="w-full py-8 mt-4 text-center">
         <Container>
