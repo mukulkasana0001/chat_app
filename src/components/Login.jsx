@@ -12,20 +12,42 @@ function Login() {
     const {register, handleSubmit} = useForm()
     const [error, setError] = useState("")
 
-    const login = async(data) => {
-        setError("")
+    // const login = async(data) => {
+    //     setError("")
+    //     try {
+    //         const session = await authService.login(data)
+    //         if (session) {
+    //             const userData = await authService.getCurrentUser()
+    //             if(userData) dispatch(authLogin(userData));
+    //             //  window.location.reload()
+    //             navigate("/")
+    //         }
+    //     } catch (error) {
+    //         setError(error.message)
+    //     }
+    // }
+
+
+
+    const login = async (data) => {
+        setError("");
         try {
-            const session = await authService.login(data)
-            if (session) {
-                const userData = await authService.getCurrentUser()
-                if(userData) dispatch(authLogin(userData));
-                //  window.location.reload()
-                navigate("/")
-            }
+          const session = await authService.login(data);
+          if (session) {
+            // Wait a bit to ensure Appwrite recognizes the session
+            setTimeout(async () => {
+              const userData = await authService.getCurrentUser();
+              if (userData) dispatch(authLogin(userData));
+              navigate("/");
+            }, 500); // 0.5 second delay
+          }
         } catch (error) {
-            setError(error.message)
+          setError(error.message);
         }
-    }
+      };
+
+
+
 
   return (
     <div
